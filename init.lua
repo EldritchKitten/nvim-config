@@ -5,9 +5,6 @@ require("opts")
 vim.cmd.colorscheme("tokyonight")
 
 
--- TODO: Try to take the theme's background color with nvim_get_hl_by_name() and base the insert mode color on that 
-
-
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 	callback = function()
 		-- vim.api.nvim_get_hl_by_name()
@@ -20,12 +17,15 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 		local black_bean = '#36070B'
 
 		local new = dark_purple
-		vim.api.nvim_set_hl(0, "Normal", {bg=new})
+		vim.api.nvim_set_hl(0, "Normal", {bg=new}) -- TODO - change the highlight based on the existing color scheme
+
+		vim.opt.cursorline = true -- start highlighting cursor line
 	end
 })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	callback = function()
 		vim.api.nvim_set_hl(0, "Normal", {bg="#222436"})
+		vim.opt.cursorline = false -- stop highlighting cursor line
 	end
 })
 
