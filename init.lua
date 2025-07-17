@@ -1,9 +1,22 @@
 require("config.lazy")
 require("opts")
 
--- Appearance customization
-vim.cmd.colorscheme("tokyonight")
 
+-- Appearance customization
+
+vim.cmd.colorscheme("tokyonight") -- use color scheme from plugin
+
+
+local switch_to_absolute_numbering = function()
+	vim.opt.number = true
+	vim.opt.relativenumber = false
+end
+local switch_to_relative_numbering = function()
+	vim.opt.number = false
+	vim.opt.relativenumber = true
+end
+
+switch_to_relative_numbering()
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 	callback = function()
@@ -18,14 +31,16 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 
 		local new = dark_purple
 		vim.api.nvim_set_hl(0, "Normal", {bg=new}) -- TODO - change the highlight based on the existing color scheme
-
+		
 		vim.opt.cursorline = true -- start highlighting cursor line
+		switch_to_absolute_numbering()
 	end
 })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	callback = function()
 		vim.api.nvim_set_hl(0, "Normal", {bg="#222436"})
 		vim.opt.cursorline = false -- stop highlighting cursor line
+		switch_to_relative_numbering()
 	end
 })
 
