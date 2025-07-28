@@ -45,6 +45,12 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 })
 
 
+-- Key Remaps
+vim.keymap.set('n', 'H', '^')
+vim.keymap.set('n', 'J', 'L')
+vim.keymap.set('n', 'K', 'H')
+vim.keymap.set('n', 'L', '$')
+
 
 -- LSP Diagnostics Options Setup 
 local sign = function(opts)
