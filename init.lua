@@ -46,10 +46,14 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 
 
 -- Key Remaps
+
 vim.keymap.set('n', 'H', '^')
 vim.keymap.set('n', 'J', 'L')
 vim.keymap.set('n', 'K', 'H')
 vim.keymap.set('n', 'L', '$')
+vim.keymap.set('n', '<tab><tab>', ':tabnew .<enter>')
+vim.keymap.set('n', '<tab>h', 'gT')
+vim.keymap.set('n', '<tab>l', 'gt')
 
 
 -- LSP Diagnostics Options Setup 
