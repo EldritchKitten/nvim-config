@@ -54,6 +54,14 @@ vim.keymap.set('n', 'L', '$')
 vim.keymap.set('n', '<tab><tab>', ':tabnew .<enter>')
 vim.keymap.set('n', '<tab>h', 'gT')
 vim.keymap.set('n', '<tab>l', 'gt')
+vim.keymap.set('n', '<tab>1', '1gt')
+vim.keymap.set('n', '<tab>2', '2gt')
+vim.keymap.set('n', '<tab>3', '3gt')
+vim.keymap.set('n', '<tab>4', '4gt')
+vim.keymap.set('n', '<tab>5', '5gt')
+vim.keymap.set('n', '<tab>6', '6gt')
+vim.keymap.set('n', '<tab>7', '7gt')
+vim.keymap.set('n', '<tab>8', '8gt')
 
 
 -- LSP Diagnostics Options Setup 
