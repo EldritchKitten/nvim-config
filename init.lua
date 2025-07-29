@@ -45,12 +45,16 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 })
 
 
--- Key Remaps
+-- Keymaps - Leader Key
+vim.g.mapleader = " "
 
+-- Keymaps - Cursor Movement
 vim.keymap.set('n', 'H', '^')
 vim.keymap.set('n', 'J', 'L')
 vim.keymap.set('n', 'K', 'H')
 vim.keymap.set('n', 'L', '$')
+
+-- Keymaps - Tabs
 vim.keymap.set('n', '<tab><tab>', ':tabnew .<enter>')
 vim.keymap.set('n', '<tab>h', 'gT')
 vim.keymap.set('n', '<tab>l', 'gt')
@@ -62,6 +66,10 @@ vim.keymap.set('n', '<tab>5', '5gt')
 vim.keymap.set('n', '<tab>6', '6gt')
 vim.keymap.set('n', '<tab>7', '7gt')
 vim.keymap.set('n', '<tab>8', '8gt')
+
+-- Keymaps - Commands
+vim.keymap.set('n', '<leader>r', ':! gnome-terminal -- bash -c "cargo run; exec bash"<Enter>')
+vim.keymap.set('n', '<leader>g', ':! gnome-terminal -- bash -c "git status; exec bash"<Enter>')
 
 
 -- LSP Diagnostics Options Setup 
