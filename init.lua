@@ -54,6 +54,17 @@ vim.keymap.set('n', 'J', 'L')
 vim.keymap.set('n', 'K', 'H')
 vim.keymap.set('n', 'L', '$')
 
+-- Keymaps - Disable Arrow Keys (to force hjkl practice)
+local bonk = function()
+	vim.notify("BONK", vim.log.levels.WARN)
+end
+vim.keymap.set('n', '<Up>', bonk)
+vim.keymap.set('n', '<Down>', bonk)
+vim.keymap.set('n', '<Left>', bonk)
+vim.keymap.set('n', '<Right>', bonk)
+
+-- vim.api.nvim_out_write("Hello, this is a message!\n")
+
 -- Keymaps - Tabs
 vim.keymap.set('n', '<tab><tab>', ':tabnew .<enter>')
 vim.keymap.set('n', '<tab>h', 'gT')
