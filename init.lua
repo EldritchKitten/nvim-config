@@ -45,6 +45,10 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 })
 
 
+-- Editor modes for setting keymaps
+local normal_mode = 'n'
+local normal_and_visual_mode = {'n', 'x'}
+
 -- Unremapped keymaps
 local cursor_to_line_start = '^'
 local cursor_to_screen_bottom = 'L'
@@ -55,42 +59,45 @@ local cursor_to_line_end = '$'
 vim.g.mapleader = " "
 
 -- Keymaps - Cursor Movement
-vim.keymap.set('n', 'H', cursor_to_line_start)
-vim.keymap.set('n', 'J', cursor_to_screen_bottom)
-vim.keymap.set('n', 'K', cursor_to_screen_top)
-vim.keymap.set('n', 'L', cursor_to_line_end)
+vim.keymap.set(normal_and_visual_mode, 'H', cursor_to_line_start)
+vim.keymap.set(normal_and_visual_mode, 'J', cursor_to_screen_bottom)
+vim.keymap.set(normal_and_visual_mode, 'K', cursor_to_screen_top)
+vim.keymap.set(normal_and_visual_mode, 'L', cursor_to_line_end)
 
 -- Keymaps - Disable Arrow Keys (to force hjkl practice)
 local bonk = function()
 	vim.notify("BONK", vim.log.levels.WARN)
 end
-vim.keymap.set('n', '<Up>', bonk)
-vim.keymap.set('n', '<Down>', bonk)
-vim.keymap.set('n', '<Left>', bonk)
-vim.keymap.set('n', '<Right>', bonk)
+vim.keymap.set(normal_and_visual_mode, '<Up>', bonk)
+vim.keymap.set(normal_and_visual_mode, '<Down>', bonk)
+vim.keymap.set(normal_and_visual_mode, '<Left>', bonk)
+vim.keymap.set(normal_and_visual_mode, '<Right>', bonk)
 
 -- vim.api.nvim_out_write("Hello, this is a message!\n")
 
 -- Keymaps - Insert new lines without entering insert mode
-vim.keymap.set('n', '<Leader>o', 'o<Esc>k'..cursor_to_line_end)
-vim.keymap.set('n', '<Leader>O', 'O<Esc>j'..cursor_to_line_start)
+vim.keymap.set(normal_mode, '<Leader>o', 'o<Esc>k'..cursor_to_line_end)
+vim.keymap.set(normal_mode, '<Leader>O', 'O<Esc>j'..cursor_to_line_start)
 
 -- Keymaps - Tabs
-vim.keymap.set('n', '<tab><tab>', ':tabnew .<enter>')
-vim.keymap.set('n', '<tab>h', 'gT')
-vim.keymap.set('n', '<tab>l', 'gt')
-vim.keymap.set('n', '<tab>1', '1gt')
-vim.keymap.set('n', '<tab>2', '2gt')
-vim.keymap.set('n', '<tab>3', '3gt')
-vim.keymap.set('n', '<tab>4', '4gt')
-vim.keymap.set('n', '<tab>5', '5gt')
-vim.keymap.set('n', '<tab>6', '6gt')
-vim.keymap.set('n', '<tab>7', '7gt')
-vim.keymap.set('n', '<tab>8', '8gt')
+vim.keymap.set(normal_and_visual_mode, '<tab><tab>', ':tabnew .<enter>')
+vim.keymap.set(normal_and_visual_mode, '<tab>h', 'gT')
+vim.keymap.set(normal_and_visual_mode, '<tab>l', 'gt')
+vim.keymap.set(normal_and_visual_mode, '<tab>1', '1gt')
+vim.keymap.set(normal_and_visual_mode, '<tab>2', '2gt')
+vim.keymap.set(normal_and_visual_mode, '<tab>3', '3gt')
+vim.keymap.set(normal_and_visual_mode, '<tab>4', '4gt')
+vim.keymap.set(normal_and_visual_mode, '<tab>5', '5gt')
+vim.keymap.set(normal_and_visual_mode, '<tab>6', '6gt')
+vim.keymap.set(normal_and_visual_mode, '<tab>7', '7gt')
+vim.keymap.set(normal_and_visual_mode, '<tab>8', '8gt')
 
 -- Keymaps - Commands
-vim.keymap.set('n', '<leader>r', ':! gnome-terminal -- bash -c "cargo run; exec bash"<Enter>')
-vim.keymap.set('n', '<leader>g', ':! gnome-terminal -- bash -c "git status; exec bash"<Enter>')
+vim.keymap.set(normal_and_visual_mode, '<leader>r', ':! gnome-terminal -- bash -c "cargo run; exec bash"<Enter>')
+vim.keymap.set(normal_and_visual_mode, '<leader>g', ':! gnome-terminal -- bash -c "git status; exec bash"<Enter>')
+
+-- Keymaps - Escape search highlighting
+vim.keymap.set(normal_and_visual_mode, '<Esc><Esc>', ':noh<Enter>')
 
 
 -- LSP Diagnostics Options Setup 
