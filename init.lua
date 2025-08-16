@@ -75,6 +75,9 @@ vim.keymap.set(normal_and_visual_mode, '<Right>', bonk)
 
 -- vim.api.nvim_out_write("Hello, this is a message!\n")
 
+-- Keymaps - Screen Movement
+vim.keymap.set(normal_and_visual_mode, 'Z', 'zz') -- For more convenient combing with J and K. Note this erases the default mapping ZZ to exit vim.
+
 -- Keymaps - Insert new lines without entering insert mode
 vim.keymap.set(normal_mode, '<Leader>o', 'o<Esc>k'..cursor_to_line_end)
 vim.keymap.set(normal_mode, '<Leader>O', 'O<Esc>j'..cursor_to_line_start)
