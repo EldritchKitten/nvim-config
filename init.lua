@@ -45,14 +45,20 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 })
 
 
+-- Unremapped keymaps
+local cursor_to_line_start = '^'
+local cursor_to_screen_bottom = 'L'
+local cursor_to_screen_top = 'H'
+local cursor_to_line_end = '$'
+
 -- Keymaps - Leader Key
 vim.g.mapleader = " "
 
 -- Keymaps - Cursor Movement
-vim.keymap.set('n', 'H', '^')
-vim.keymap.set('n', 'J', 'L')
-vim.keymap.set('n', 'K', 'H')
-vim.keymap.set('n', 'L', '$')
+vim.keymap.set('n', 'H', cursor_to_line_start)
+vim.keymap.set('n', 'J', cursor_to_screen_bottom)
+vim.keymap.set('n', 'K', cursor_to_screen_top)
+vim.keymap.set('n', 'L', cursor_to_line_end)
 
 -- Keymaps - Disable Arrow Keys (to force hjkl practice)
 local bonk = function()
@@ -64,6 +70,10 @@ vim.keymap.set('n', '<Left>', bonk)
 vim.keymap.set('n', '<Right>', bonk)
 
 -- vim.api.nvim_out_write("Hello, this is a message!\n")
+
+-- Keymaps - Insert new lines without entering insert mode
+vim.keymap.set('n', '<Leader>o', 'o<Esc>k'..cursor_to_line_end)
+vim.keymap.set('n', '<Leader>O', 'O<Esc>j'..cursor_to_line_start)
 
 -- Keymaps - Tabs
 vim.keymap.set('n', '<tab><tab>', ':tabnew .<enter>')
