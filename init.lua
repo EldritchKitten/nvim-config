@@ -55,6 +55,18 @@ local cursor_to_screen_bottom = 'L'
 local cursor_to_screen_top = 'H'
 local cursor_to_line_end = '$'
 
+-- Keymaps - Function for allowing count prefixes to repeat commands.
+-- This isn't needed for simple remaps, but if `x->abc` then `#x->(#a)bc` by default.
+local repeatable = function(cmd)
+	return function()
+		local count = vim.v.count == 0 and 1 or vim.v.count -- Because vim.v.count is 0 when there is no count prefix.
+		for i=1,count
+		do
+			vim.cmd('normal! '..cmd) -- NB: The 'normal!' means the command is the normal mode command without user key mappings applied (i.e. the RHS of a keymap).
+		end
+	end
+end
+
 -- Keymaps - Leader Key
 vim.g.mapleader = " "
 
@@ -86,17 +98,7 @@ vim.keymap.set(normal_mode, '<Leader>O', 'O<Esc>j'..cursor_to_line_start)
 vim.keymap.set(normal_and_visual_mode, '<tab><tab>', ':tabnew .<enter>')
 
 vim.keymap.set(normal_and_visual_mode, '<tab>h', 'gT')
-
-vim.keymap.set(normal_and_visual_mode, '<tab>l',
-	function()
-		local count = vim.v.count
-		vim.cmd('normal! gt') -- Because vim.v.count is 0 when no number prefix is given.
-		for i=2,count
-		do
-			vim.cmd('normal! gt') -- NB: The 'normal!' means the command is the normal mode command without user key mappings applied (i.e. the RHS of a keymap).
-		end
-	end
-)
+vim.keymap.set(normal_and_visual_mode, '<tab>l', repeatable('gt'))
 
 vim.keymap.set(normal_and_visual_mode, '<tab>1', '1gt')
 vim.keymap.set(normal_and_visual_mode, '<tab>2', '2gt')
