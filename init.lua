@@ -84,8 +84,20 @@ vim.keymap.set(normal_mode, '<Leader>O', 'O<Esc>j'..cursor_to_line_start)
 
 -- Keymaps - Tabs
 vim.keymap.set(normal_and_visual_mode, '<tab><tab>', ':tabnew .<enter>')
+
 vim.keymap.set(normal_and_visual_mode, '<tab>h', 'gT')
-vim.keymap.set(normal_and_visual_mode, '<tab>l', 'gt')
+
+vim.keymap.set(normal_and_visual_mode, '<tab>l',
+	function()
+		local count = vim.v.count
+		vim.cmd('normal! gt') -- Because vim.v.count is 0 when no number prefix is given.
+		for i=2,count
+		do
+			vim.cmd('normal! gt') -- NB: The 'normal!' means the command is the normal mode command without user key mappings applied (i.e. the RHS of a keymap).
+		end
+	end
+)
+
 vim.keymap.set(normal_and_visual_mode, '<tab>1', '1gt')
 vim.keymap.set(normal_and_visual_mode, '<tab>2', '2gt')
 vim.keymap.set(normal_and_visual_mode, '<tab>3', '3gt')
@@ -94,6 +106,8 @@ vim.keymap.set(normal_and_visual_mode, '<tab>5', '5gt')
 vim.keymap.set(normal_and_visual_mode, '<tab>6', '6gt')
 vim.keymap.set(normal_and_visual_mode, '<tab>7', '7gt')
 vim.keymap.set(normal_and_visual_mode, '<tab>8', '8gt')
+vim.keymap.set(normal_and_visual_mode, '<tab>9', '9gt')
+vim.keymap.set(normal_and_visual_mode, '<tab>0', '0gt')
 
 -- Keymaps - Commands
 vim.keymap.set(normal_and_visual_mode, '<leader>r', ':! gnome-terminal -- bash -c "cargo run; exec bash"<Enter>')
